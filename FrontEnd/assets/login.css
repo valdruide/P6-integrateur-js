@@ -1,0 +1,75 @@
+footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+}
+main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      height: 50vh;
+}
+body {
+      background-color: #fffef8;
+}
+h2 {
+      color: #1d6154;
+      margin-bottom: 30px;
+}
+form {
+      display: flex;
+      flex-direction: column;
+      width: 40%;
+}
+input {
+      height: 50px;
+      font-size: 1.2em;
+      border: none;
+      outline: none;
+      box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+      padding: 0 10px;
+}
+label {
+      margin: 2em 0 1em 0;
+}
+form a {
+      text-decoration: underline;
+      text-align: center;
+      color: black;
+}
+.errorMsg {
+      background-color: rgb(255, 145, 145);
+      width: 40%;
+      padding: 25px;
+      border-radius: 10px;
+      margin-top: 20px;
+      visibility: hidden;
+}
+.errorAnim {
+      animation: shake 0.2s forwards linear;
+}
+.errorMsg p {
+      color: #fff;
+      font-size: 1.2em;
+}
+@keyframes shake {
+      0% {
+            transform: translateX(0px);
+      }
+      25% {
+            transform: translateX(-10px);
+      }
+      50% {
+            transform: translateX(0px);
+      }
+      75% {
+            transform: translateX(10px);
+      }
+
+      100% {
+            transform: translateX(0px);
+      }
+}
