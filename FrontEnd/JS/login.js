@@ -1,7 +1,8 @@
 const login = {
       init: function () {
             const loginBtn = document.getElementById('loginBtn');
-            loginBtn.addEventListener('click', () => {
+            loginBtn.addEventListener('click', (e) => {
+                  e.preventDefault();
                   login.login();
             });
       },

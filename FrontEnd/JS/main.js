@@ -3,7 +3,6 @@ const indexPage = {
             indexPage.getCat();
             indexPage.getWorks();
       },
-
       getCat: async function () {
             //Récupère toutes les catégories
             try {
