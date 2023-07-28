@@ -9,20 +9,41 @@
             <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet" />
             <meta name="description" content="" />
             <link rel="stylesheet" href="./assets/style.css" />
+            <link rel="stylesheet" href="./assets/adminBar.css" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
       </head>
       <body>
+            <div class="preHeader">
+                  <div class="editContainer">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <p class="editMode">Mode édition</p>
+                  </div>
+                  <div class="publishContainer">
+                        <p>Publier les changements</p>
+                  </div>
+            </div>
             <header>
                   <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
                   <nav>
                         <ul>
                               <li><a href="./index.html">projets</a></li>
                               <li>contact</li>
-                              <li><a href="./login.html">login</a></li>
+                              <li id="loginBtn"><a href="./login.html">login</a></li>
+                              <li id="logoutBtn">logout</li>
                               <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
                         </ul>
                   </nav>
             </header>
             <main>
+                  <dialog class="modaleContainer">
+                        <div class="closeContainer">
+                              <i class="fa-solid fa-xmark" id="closeModale"></i>
+                        </div>
+                        <div class="modaleContent">
+                              <p>Galerie photo</p>
+                              <div class="modaleProjects"></div>
+                        </div>
+                  </dialog>
                   <section id="introduction">
                         <figure>
                               <img src="./assets/images/sophie-bluel.png" alt="" />
@@ -66,5 +87,6 @@
                   </nav>
             </footer>
             <script src="./JS/main.js"></script>
+            <script src="./JS/adminBar.js"></script>
       </body>
 </html>

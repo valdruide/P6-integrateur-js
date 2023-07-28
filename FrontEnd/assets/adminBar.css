@@ -1,0 +1,92 @@
+#logoutBtn{
+    display: none;
+    cursor: pointer;
+}
+
+.preHeader{
+    width: 100vw;
+    position: relative;
+    right: -50%;
+    margin-left: -50vw;
+    background-color: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 15px;
+    font-size: 18px;
+    gap: 30px;
+}
+
+
+.editContainer{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.fa-pen-to-square{
+    color: #fff;
+}
+.editMode{
+    color: #fff;
+    cursor: pointer;
+}
+
+.publishContainer{
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s ease-out;
+}
+.publishContainer:hover{
+    background-color: #1D6053;
+    color: #fff;
+}
+
+
+.modaleContainer{
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    max-width: 30%;
+}
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.599)
+}
+.closeContainer{
+    width: 100%;
+    text-align: right;
+}
+.fa-xmark{
+    cursor: pointer;
+    transition: all .2s ease-out;
+    font-size: 20px;
+}
+.fa-xmark:hover{
+    color: red;
+}
+.modaleContent{
+    padding: 20px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.modaleContent p{
+    margin-bottom: 25px;
+}
+
+.modaleProjects{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+}
+.modaleProjects img{
+    width: 17%;
+}
