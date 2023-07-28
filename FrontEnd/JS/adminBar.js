@@ -37,6 +37,7 @@ const admin = {
     },
     getWorks: async function(){
         modaleProjects = document.querySelector('.modaleProjects');
+        modaleProjects.replaceChildren() 
         try {
             const response = await fetch('http://localhost:5678/api/works');
             const works = await response.json();
