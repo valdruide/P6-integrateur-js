@@ -1,92 +1,168 @@
-#logoutBtn{
-    display: none;
-    cursor: pointer;
+#logoutBtn {
+      display: none;
+      cursor: pointer;
 }
 
-.preHeader{
-    width: 100vw;
-    position: relative;
-    right: -50%;
-    margin-left: -50vw;
-    background-color: black;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    padding: 25px 15px;
-    font-size: 18px;
-    gap: 30px;
+.preHeader {
+      width: 100vw;
+      position: relative;
+      right: -50%;
+      margin-left: -50vw;
+      background-color: black;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 25px 15px;
+      font-size: 18px;
+      gap: 30px;
 }
 
-
-.editContainer{
-    display: flex;
-    align-items: center;
-    gap: 5px;
+.editContainer {
+      display: flex;
+      align-items: center;
+      gap: 5px;
 }
-.fa-pen-to-square{
-    color: #fff;
+.fa-pen-to-square {
+      color: #fff;
 }
-.editMode{
-    color: #fff;
-    cursor: pointer;
-}
-
-.publishContainer{
-    background-color: #fff;
-    border-radius: 25px;
-    padding: 12px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all .2s ease-out;
-}
-.publishContainer:hover{
-    background-color: #1D6053;
-    color: #fff;
+.editMode {
+      color: #fff;
+      cursor: pointer;
 }
 
+.publishContainer {
+      background-color: #fff;
+      border-radius: 25px;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s ease-out;
+}
+.publishContainer:hover {
+      background-color: #1d6053;
+      color: #fff;
+}
 
-.modaleContainer{
-    border-radius: 10px;
-    padding: 10px;
-    border: none;
-    outline: none;
-    max-width: 30%;
+.modaleContainer,
+.modaleAddPhoto {
+      border-radius: 10px;
+      padding: 20px;
+      border: none;
+      outline: none;
+      max-width: 30%;
 }
 dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.599)
+      background-color: rgba(0, 0, 0, 0.599);
 }
-.closeContainer{
-    width: 100%;
-    text-align: right;
+.closeContainer {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 }
-.fa-xmark{
-    cursor: pointer;
-    transition: all .2s ease-out;
-    font-size: 20px;
+.fa-xmark,
+.fa-arrow-left {
+      cursor: pointer;
+      transition: all 0.2s ease-out;
+      font-size: 20px;
 }
-.fa-xmark:hover{
-    color: red;
+.fa-arrow-left {
+      visibility: hidden;
 }
-.modaleContent{
-    padding: 20px;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.fa-xmark:hover,
+.fa-arrow-left:hover {
+      color: red;
 }
-.modaleContent p{
-    margin-bottom: 25px;
+.modaleContent {
+      padding: 20px;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+}
+.modaleContent p {
+      margin-bottom: 25px;
 }
 
-.modaleProjects{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 15px;
+.modaleProjects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
 }
-.modaleProjects img{
-    width: 17%;
+.editImgContainer {
+      width: 17%;
+      position: relative;
+}
+.modaleProjects img {
+      width: 100%;
+}
+.editBtnsContainer {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding-top: 2px;
+      padding-bottom: 2px;
+}
+.fa-trash-can,
+.fa-arrows-up-down-left-right {
+      color: #fff;
+      background-color: black;
+      border-radius: 6px;
+      padding: 6px;
+      font-size: 12px;
+      margin-right: 2px;
+      transition: all 0.2s ease-out;
+      cursor: pointer;
+}
+.fa-trash-can:hover {
+      color: rgb(226, 59, 59);
+}
+.fa-arrows-up-down-left-right:hover {
+      color: rgb(75, 238, 238);
+}
+
+.editWorkBtn {
+      cursor: pointer;
+      transition: all 0.1s ease;
+}
+.editWorkBtn:hover {
+      color: rgb(226, 59, 59);
+}
+
+.addPhotoBtn {
+      background-color: #1d6053;
+      border-radius: 25px;
+      padding: 15px 25px;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      width: 40%;
+      font-size: 18px;
+      margin-left: auto;
+      margin-right: auto;
+}
+.addPhotoBtn:hover {
+      background-color: #277e6c;
+}
+.deleteAllGallery {
+      color: rgb(226, 59, 59);
+      font-size: 16px;
+      text-align: center;
+      margin-top: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+}
+.deleteAllGallery:hover {
+      text-decoration: underline;
 }

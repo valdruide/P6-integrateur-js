@@ -10,7 +10,7 @@
             <meta name="description" content="" />
             <link rel="stylesheet" href="./assets/style.css" />
             <link rel="stylesheet" href="./assets/adminBar.css" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
       <body>
             <div class="preHeader">
@@ -37,12 +37,28 @@
             <main>
                   <dialog class="modaleContainer">
                         <div class="closeContainer">
+                              <i class="fa-solid fa-arrow-left"></i>
                               <i class="fa-solid fa-xmark" id="closeModale"></i>
                         </div>
                         <div class="modaleContent">
                               <p>Galerie photo</p>
                               <div class="modaleProjects"></div>
                         </div>
+                        <hr />
+                        <div class="addPhotoBtn">
+                              <p>Ajouter une photo</p>
+                        </div>
+                        <p class="deleteAllGallery">Supprimer toute la galerie</p>
+                  </dialog>
+                  <dialog class="modaleAddPhoto">
+                        <div class="closeContainer">
+                              <i class="fa-solid fa-arrow-left"></i>
+                              <i class="fa-solid fa-xmark" id="closeModale"></i>
+                        </div>
+                        <div class="modaleContent">
+                              <p>Ajout photo</p>
+                        </div>
+                        <hr />
                   </dialog>
                   <section id="introduction">
                         <figure>
