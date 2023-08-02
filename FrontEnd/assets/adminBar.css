@@ -166,3 +166,55 @@ dialog::backdrop {
 .deleteAllGallery:hover {
       text-decoration: underline;
 }
+
+
+
+
+/*ADD PHOTO MODALE*/
+.modaleAddPhoto{
+      width: 25%;
+}
+.addPhotoForm{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+}
+.photoPreview{
+      background-color: #E8F1F6;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      width: 80%;
+}
+.formTitle, .formCategory{
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+}
+.formTitle input, .formCategory select{
+      border: 1px solid white;
+      outline: none;
+      box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.191);
+      padding: 10px 5px;
+      margin-top: 5px;
+}
+.importProjectBtn{
+      background-color: #1d6053;
+      border-radius: 25px;
+      padding: 12px 25px;
+      color: #fff;
+      transition: all 0.2s ease;
+      width: 40%;
+      font-size: 18px;
+      outline: none;
+      border: none;
+}
+.importProjectBtn:hover {
+      background-color: #277e6c;
+}
+/*FIN -- ADD PHOTO MODALE*/

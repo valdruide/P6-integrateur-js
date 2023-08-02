@@ -58,7 +58,24 @@
                         <div class="modaleContent">
                               <p>Ajout photo</p>
                         </div>
-                        <hr />
+                        <form action="" class="addPhotoForm" enctype="multipart/form-data">
+                              <div class="photoPreview">
+                                    <i class="fa-regular fa-image"></i>
+                                    <label for="photo">+ Ajouter une photo</label>
+                                    <input type="file" name="photo" id="photo" class="js-image">
+                              </div>
+                              <div class="formTitle">
+                                    <label for="titre">Titre</label>
+                                    <input class="js-title" type="text" name="titre" id="titre">
+                              </div>
+                              <div class="formCategory">
+                                    <label for="categorie">Catégorie</label>
+                                    <select name="categorie" id="categorie" class="js-categoryId">
+                                          <option value="1">Objets</option>
+                                    </select>
+                              </div>
+                              <input type="submit" class="importProjectBtn" value="Valider">
+                        </form>
                   </dialog>
                   <section id="introduction">
                         <figure>

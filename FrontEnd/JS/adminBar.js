@@ -1,4 +1,7 @@
+
+let workDeleted = false;
 const admin = {
+      
       init: function () {
             admin.adminBarGen();
       },
@@ -28,10 +31,13 @@ const admin = {
                         admin.getWorks();
                   });
 
-                  const modale = document.querySelectorAll('.modale');
                   const closeModale = document.querySelectorAll('.fa-xmark');
                   for (let i = 0; i < closeModale.length; i++) {
                         closeModale[i].addEventListener('click', () => {
+                              if(workDeleted){
+                                    workDeleted = false;
+                                    location.reload();
+                              }
                               modaleContainer.close();
                               modaleAddPhoto.close();
                         });
@@ -50,29 +56,62 @@ const admin = {
                         const img = document.createElement('img');
                         img.setAttribute('src', work.imageUrl);
                         img.setAttribute('alt', work.title);
+                        img.setAttribute('id', work.id);
                         editImgContainer.appendChild(img);
                         modaleProjects.appendChild(editImgContainer);
 
                         const editBtnsContainer = document.createElement('div');
                         editBtnsContainer.classList.add('editBtnsContainer');
-                        editBtnsContainer.innerHTML = '<i class="fa-solid fa-arrows-up-down-left-right"></i> <i class="fa-solid fa-trash-can" id="trash"></i> ';
+
+                        const moveArrow = document.createElement('i')
+                        const trash = document.createElement('i')
+                        moveArrow.classList.add('fa-solid', 'fa-arrows-up-down-left-right')
+                        trash.classList.add('fa-solid', 'fa-trash-can')
+                        trash.setAttribute('id', work.id)
+                        editBtnsContainer.appendChild(moveArrow)
+                        editBtnsContainer.appendChild(trash)
                         editImgContainer.appendChild(editBtnsContainer);
 
                         const editWorkBtn = document.createElement('p');
                         editWorkBtn.innerText = 'éditer';
-                        editWorkBtn.setAttribute('id', 'edit' + work.id);
                         editWorkBtn.classList.add('editWorkBtn');
                         editImgContainer.appendChild(editWorkBtn);
                   }
             } catch (err) {
                   console.error(err);
             }
-            document.getElementById('trash').addEventListener('click', () => {
-                  console.log('SUPPRIMER');
-            });
+
+            let deleteBtn = document.querySelectorAll(".fa-trash-can");
+            for(let i = 0; i < deleteBtn.length; i++){
+                  deleteBtn[i].addEventListener('click', () => { 
+                        admin.removeProject(deleteBtn[i]);
+                  });
+            }
             document.querySelector('.addPhotoBtn').addEventListener('click', () => {
                   admin.addPhoto();
             });
+      },
+      removeProject: async function(btnID){
+            console.log(btnID.id)
+            const token = localStorage.getItem("token");
+            try{
+                  const response = await fetch('http://localhost:5678/api/works/' + btnID.id, {
+                        method: "DELETE",
+                        headers: { Authorization: `Bearer ${token}`},
+                  });
+                  if(response.status === 204){
+                        workDeleted = true;
+                        admin.getWorks()
+                  } else if(response.status === 401){
+                        console.log('Non autorisé')
+                  } else {
+                        console.log('erreur')
+                  }
+
+            }  catch (err) {
+                  console.error(err)
+            }
+
       },
       addPhoto: function () {
             const modaleContainer = document.querySelector('.modaleContainer');
@@ -81,6 +120,7 @@ const admin = {
             arrowLeft.style.visibility = 'visible';
             modaleContainer.close();
             modaleAddPhoto.showModal();
+            console.log('add photo')
 
             arrowLeft.addEventListener('click', () => {
                   modaleContainer.showModal();
