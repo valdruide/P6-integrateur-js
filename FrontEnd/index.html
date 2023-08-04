@@ -60,9 +60,11 @@
                         </div>
                         <form action="" class="addPhotoForm" enctype="multipart/form-data">
                               <div class="photoPreview">
+                                    <img src="" alt="image preview" class="previewImg">
                                     <i class="fa-regular fa-image"></i>
-                                    <label for="photo">+ Ajouter une photo</label>
-                                    <input type="file" name="photo" id="photo" class="js-image">
+                                    <label for="photo" id="addPhotoTxt">+ Ajouter une photo</label>
+                                    <input type="file" name="photo" id="photo" class="inputImg">
+                                    <p>jpg, png : 4mo max</p>
                               </div>
                               <div class="formTitle">
                                     <label for="titre">Titre</label>
@@ -70,11 +72,10 @@
                               </div>
                               <div class="formCategory">
                                     <label for="categorie">Catégorie</label>
-                                    <select name="categorie" id="categorie" class="js-categoryId">
-                                          <option value="1">Objets</option>
+                                    <select name="categorie" id="categorie">
                                     </select>
                               </div>
-                              <input type="submit" class="importProjectBtn" value="Valider">
+                              <input type="submit" class="" value="Valider" disabled id="submitBtn">
                         </form>
                   </dialog>
                   <section id="introduction">

@@ -190,6 +190,29 @@ dialog::backdrop {
       align-items: center;
       border-radius: 5px;
       width: 80%;
+      gap: 10px;
+}
+.photoPreview label{
+      background-color: #CBD6DC;
+      border-radius: 25px;
+      padding: 10px 15px;
+      color: #306685;
+      font-size: 18px;
+}
+.fa-image{
+      font-size: 3rem;
+      color: #B9C5CC;
+}
+.inputImg{
+      display: none;
+}
+.photoPreview p{
+      color: #444444;
+      font-size: 13px;
+}
+.previewImg{
+      display: none;
+      max-width: 50%;
 }
 .formTitle, .formCategory{
       display: flex;
@@ -213,6 +236,18 @@ dialog::backdrop {
       font-size: 18px;
       outline: none;
       border: none;
+      cursor: pointer;
+}
+input[type="submit" i]:disabled {
+      background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3));
+      color: -internal-light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
+      border-color: -internal-light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3));
+      border-radius: 25px;
+      padding: 12px 25px;
+      transition: all 0.2s ease;
+      width: 40%;
+      font-size: 18px;
+      outline: none;
 }
 .importProjectBtn:hover {
       background-color: #277e6c;

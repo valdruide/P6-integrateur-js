@@ -113,19 +113,51 @@ const admin = {
             }
 
       },
-      addPhoto: function () {
+      addPhoto: async function () {
             const modaleContainer = document.querySelector('.modaleContainer');
             const modaleAddPhoto = document.querySelector('.modaleAddPhoto');
             const arrowLeft = document.querySelectorAll('.fa-arrow-left')[1];
             arrowLeft.style.visibility = 'visible';
             modaleContainer.close();
             modaleAddPhoto.showModal();
-            console.log('add photo')
 
             arrowLeft.addEventListener('click', () => {
                   modaleContainer.showModal();
                   modaleAddPhoto.close();
             });
+
+
+            //Récupère toutes les catégories
+            const category =  document.getElementById('categorie');
+            try {
+                  const response = await fetch('http://localhost:5678/api/categories');
+                  const res = await response.json();
+                  for(cat of res){
+                        const option = document.createElement('option');
+                        option.setAttribute('value', cat.id)
+                        option.innerText = cat.name;
+                        category.appendChild(option)
+                  }
+            } catch (err) {
+                  console.error(err);
+            }
+
+            //Preview de la photo
+            const addPhotoInput =  document.getElementById('photo')
+            addPhotoInput.onchange = () => {
+                  if(addPhotoInput.files.length > 0){
+                        const inputSubmitBtn = document.getElementById('submitBtn')
+                        const imgPreview = document.querySelector('.previewImg')
+                        const addPhotoTxt = document.querySelector('#addPhotoTxt')
+                        const imageIcon = document.querySelector('.fa-image')
+                        const src = URL.createObjectURL(addPhotoInput.files[0])
+                        imgPreview.setAttribute('src', src);
+                        imgPreview.style.display = 'block';
+                        addPhotoTxt.innerText = 'Changer la photo';
+                        imageIcon.style.display  = 'none';
+                        inputSubmitBtn.classList.add('importProjectBtn')
+                  }
+            }
       },
 };
 
