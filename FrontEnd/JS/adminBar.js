@@ -2,8 +2,22 @@
 let workDeleted = false;
 const admin = {
       
-      init: function () {
+      init: async function () {
             admin.adminBarGen();
+            //Récupère toutes les catégories pour  la modale
+            const category =  document.getElementById('categorie');
+            try {
+                  const response = await fetch('http://localhost:5678/api/categories');
+                  const res = await response.json();
+                  for(cat of res){
+                        const option = document.createElement('option');
+                        option.setAttribute('value', cat.id)
+                        option.innerText = cat.name;
+                        category.appendChild(option)
+                  }
+            } catch (err) {
+                  console.error(err);
+            }
       },
       adminBarGen: function () {
             const preHeader = document.getElementsByClassName('preHeader')[0];
@@ -126,22 +140,6 @@ const admin = {
                   modaleAddPhoto.close();
             });
 
-
-            //Récupère toutes les catégories
-            const category =  document.getElementById('categorie');
-            try {
-                  const response = await fetch('http://localhost:5678/api/categories');
-                  const res = await response.json();
-                  for(cat of res){
-                        const option = document.createElement('option');
-                        option.setAttribute('value', cat.id)
-                        option.innerText = cat.name;
-                        category.appendChild(option)
-                  }
-            } catch (err) {
-                  console.error(err);
-            }
-
             //Preview de la photo
             const addPhotoInput =  document.getElementById('photo')
             addPhotoInput.onchange = () => {
@@ -158,6 +156,52 @@ const admin = {
                         inputSubmitBtn.classList.add('importProjectBtn')
                   }
             }
+
+            //Submit btn
+            const submitBtn = document.getElementById("submitBtn");
+            submitBtn.addEventListener('click', async (e) => {
+                  e.preventDefault();
+                  const pic = document.getElementById('photo').files[0];
+                  const title = document.getElementById('titre').value;
+                  const categoryId = document.getElementById('categorie').value;
+                  
+                  const token = localStorage.getItem("token");
+                  
+                  if(pic === undefined || title === "" || categoryId === ""){
+                        return alert('Veuillez remplir tous les champs')
+                  } else {
+                        try{
+                              const formData = new FormData();
+                              formData.append("title", title);
+                              formData.append("category", categoryId);
+                              formData.append("image", pic);
+                              const response = await fetch('http://localhost:5678/api/works', {
+                                    method: 'POST',
+                                    headers: {
+                                          Authorization: `Bearer ${token}`,
+                                    },
+                                    body: formData,
+                              });
+                              
+                              if (response.status === 201) {
+                                    admin.getWorks();
+                                    arrowLeft.style.visibility = 'hidden';
+                                    modaleContainer.showModal();
+                                    modaleAddPhoto.close();
+                                    alert("Projet ajouté avec succès");
+                                } else if (response.status === 500) {
+                                    consol("Une erreur est survenue. Contactez votre administrateur système");
+                                } else if (response.status === 401) {
+                                    alert("Vous n'avez pas l'autorisation nécessaire. Si vous êtes administrateur, déconnectez et reconnectez-vous !");
+                              }
+
+                        } catch (err){
+                              console.error(err)
+                        }
+                  }
+
+                  
+            })
       },
 };
 
