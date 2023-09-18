@@ -1,4 +1,5 @@
 let workDeleted = false;
+let workAdded = false;
 const admin = {
       init: async function () {
             admin.adminBarGen();
@@ -39,6 +40,7 @@ const admin = {
                   const modaleContainer = document.querySelector('.modaleContainer');
                   const modaleAddPhoto = document.querySelector('.modaleAddPhoto');
                   editMode.addEventListener('click', () => {
+                        modaleAddPhoto.close();
                         modaleContainer.showModal();
                         admin.getWorks();
                   });
@@ -49,10 +51,31 @@ const admin = {
                               if (workDeleted) {
                                     workDeleted = false;
                                     location.reload();
+                              } else if (workAdded) {
+                                    workAdded = false;
+                                    location.reload();
+                              } else {
+                                    admin.removePhoto();
+                                    modaleAddPhoto.close();
+                                    modaleContainer.close();
                               }
-                              modaleContainer.close();
-                              modaleAddPhoto.close();
                         });
+                        modaleContainer.addEventListener('mousedown', (event) => {
+                              if (event.button == 0) {
+                                    admin.removePhoto();
+                                    modaleContainer.close();
+                              }
+                        });
+                        modaleAddPhoto.addEventListener('mousedown', (event) => {
+                              if (event.button == 0) {
+                                    admin.removePhoto();
+                                    modaleAddPhoto.close();
+                              }
+                        });
+                        const firstModale = document.getElementById('firstModale');
+                        firstModale.addEventListener('mousedown', (event) => event.stopPropagation());
+                        const secondModale = document.getElementById('secondModale');
+                        secondModale.addEventListener('mousedown', (event) => event.stopPropagation());
                   }
             }
       },
@@ -75,19 +98,11 @@ const admin = {
                         const editBtnsContainer = document.createElement('div');
                         editBtnsContainer.classList.add('editBtnsContainer');
 
-                        const moveArrow = document.createElement('i');
                         const trash = document.createElement('i');
-                        moveArrow.classList.add('fa-solid', 'fa-arrows-up-down-left-right');
                         trash.classList.add('fa-solid', 'fa-trash-can');
                         trash.setAttribute('id', work.id);
-                        editBtnsContainer.appendChild(moveArrow);
                         editBtnsContainer.appendChild(trash);
                         editImgContainer.appendChild(editBtnsContainer);
-
-                        const editWorkBtn = document.createElement('p');
-                        editWorkBtn.innerText = 'éditer';
-                        editWorkBtn.classList.add('editWorkBtn');
-                        editImgContainer.appendChild(editWorkBtn);
                   }
             } catch (err) {
                   console.error(err);
@@ -132,8 +147,8 @@ const admin = {
             modaleAddPhoto.showModal();
 
             arrowLeft.addEventListener('click', () => {
-                  modaleContainer.showModal();
                   modaleAddPhoto.close();
+                  modaleContainer.showModal();
             });
 
             //Preview de la photo
@@ -157,9 +172,10 @@ const admin = {
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.addEventListener('click', async (e) => {
                   e.preventDefault();
-                  const pic = document.getElementById('photo').files[0];
-                  const title = document.getElementById('titre').value;
-                  const categoryId = document.getElementById('categorie').value;
+                  e.stopImmediatePropagation();
+                  let pic = document.getElementById('photo');
+                  let title = document.getElementById('titre');
+                  let categoryId = document.getElementById('categorie');
 
                   const token = localStorage.getItem('token');
 
@@ -168,9 +184,10 @@ const admin = {
                   } else {
                         try {
                               const formData = new FormData();
-                              formData.append('title', title);
-                              formData.append('category', categoryId);
-                              formData.append('image', pic);
+                              formData.append('title', title.value);
+                              formData.append('category', categoryId.value);
+                              formData.append('image', pic.files[0]);
+                              console.log('run');
                               const response = await fetch('http://localhost:5678/api/works', {
                                     method: 'POST',
                                     headers: {
@@ -178,14 +195,17 @@ const admin = {
                                     },
                                     body: formData,
                               });
-
                               if (response.status === 201) {
-                                    admin.getWorks();
                                     arrowLeft.style.visibility = 'hidden';
-                                    modaleContainer.showModal();
                                     modaleAddPhoto.close();
+                                    modaleContainer.showModal();
+                                    pic.value = null;
+                                    title = '';
+                                    categoryId = 1;
+                                    workAdded = true;
+                                    admin.removePhoto();
+                                    admin.getWorks();
                                     alert('Projet ajouté avec succès');
-                                    formData.clear(); //A TESTER ////////////////////////////////////////////////////////////////////
                               } else if (response.status === 500) {
                                     console.log('Une erreur est survenue. Contactez votre administrateur système');
                               } else if (response.status === 401) {
@@ -196,6 +216,24 @@ const admin = {
                         }
                   }
             });
+      },
+      removePhoto: function () {
+            const inputSubmitBtn = document.getElementById('submitBtn');
+            const imgPreview = document.querySelector('.previewImg');
+            const addPhotoTxt = document.querySelector('#addPhotoTxt');
+            const imageIcon = document.querySelector('.fa-image');
+            imgPreview.setAttribute('src', '');
+            imgPreview.style.display = 'none';
+            addPhotoTxt.innerText = '+ Ajouter une photo';
+            imageIcon.style.display = 'block';
+            inputSubmitBtn.classList.add('importProjectBtn');
+
+            let pic = document.getElementById('photo');
+            let title = document.getElementById('titre');
+            let categoryId = document.getElementById('categorie');
+            pic.value = null;
+            title.value = '';
+            categoryId.value = 1;
       },
 };
 

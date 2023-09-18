@@ -18,9 +18,6 @@
                         <i class="fa-solid fa-pen-to-square"></i>
                         <p class="editMode">Mode édition</p>
                   </div>
-                  <div class="publishContainer">
-                        <p>Publier les changements</p>
-                  </div>
             </div>
             <header>
                   <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
@@ -36,47 +33,49 @@
             </header>
             <main>
                   <dialog class="modaleContainer">
-                        <div class="closeContainer">
-                              <i class="fa-solid fa-arrow-left"></i>
-                              <i class="fa-solid fa-xmark" id="closeModale"></i>
+                        <div id="firstModale">
+                              <div class="closeContainer">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                    <i class="fa-solid fa-xmark" id="closeModale"></i>
+                              </div>
+                              <div class="modaleContent">
+                                    <p>Galerie photo</p>
+                                    <div class="modaleProjects"></div>
+                              </div>
+                              <hr />
+                              <div class="addPhotoBtn">
+                                    <p>Ajouter une photo</p>
+                              </div>
                         </div>
-                        <div class="modaleContent">
-                              <p>Galerie photo</p>
-                              <div class="modaleProjects"></div>
-                        </div>
-                        <hr />
-                        <div class="addPhotoBtn">
-                              <p>Ajouter une photo</p>
-                        </div>
-                        <p class="deleteAllGallery">Supprimer toute la galerie</p>
                   </dialog>
                   <dialog class="modaleAddPhoto">
-                        <div class="closeContainer">
-                              <i class="fa-solid fa-arrow-left"></i>
-                              <i class="fa-solid fa-xmark" id="closeModale"></i>
+                        <div id="secondModale">
+                              <div class="closeContainer">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                    <i class="fa-solid fa-xmark" id="closeModale"></i>
+                              </div>
+                              <div class="modaleContent">
+                                    <p>Ajout photo</p>
+                              </div>
+                              <form action="" class="addPhotoForm" enctype="multipart/form-data">
+                                    <div class="photoPreview">
+                                          <img src="" alt="image preview" class="previewImg" />
+                                          <i class="fa-regular fa-image"></i>
+                                          <label for="photo" id="addPhotoTxt">+ Ajouter une photo</label>
+                                          <input type="file" name="photo" id="photo" class="inputImg" />
+                                          <p>jpg, png : 4mo max</p>
+                                    </div>
+                                    <div class="formTitle">
+                                          <label for="titre">Titre</label>
+                                          <input class="js-title" type="text" name="titre" id="titre" />
+                                    </div>
+                                    <div class="formCategory">
+                                          <label for="categorie">Catégorie</label>
+                                          <select name="categorie" id="categorie"></select>
+                                    </div>
+                                    <input type="submit" class="" value="Valider" id="submitBtn" />
+                              </form>
                         </div>
-                        <div class="modaleContent">
-                              <p>Ajout photo</p>
-                        </div>
-                        <form action="" class="addPhotoForm" enctype="multipart/form-data">
-                              <div class="photoPreview">
-                                    <img src="" alt="image preview" class="previewImg">
-                                    <i class="fa-regular fa-image"></i>
-                                    <label for="photo" id="addPhotoTxt">+ Ajouter une photo</label>
-                                    <input type="file" name="photo" id="photo" class="inputImg">
-                                    <p>jpg, png : 4mo max</p>
-                              </div>
-                              <div class="formTitle">
-                                    <label for="titre">Titre</label>
-                                    <input class="js-title" type="text" name="titre" id="titre">
-                              </div>
-                              <div class="formCategory">
-                                    <label for="categorie">Catégorie</label>
-                                    <select name="categorie" id="categorie">
-                                    </select>
-                              </div>
-                              <input type="submit" class="" value="Valider" id="submitBtn">
-                        </form>
                   </dialog>
                   <section id="introduction">
                         <figure>
