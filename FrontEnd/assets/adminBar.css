@@ -51,7 +51,7 @@
       padding: 20px;
       border: none;
       outline: none;
-      max-width: 30%;
+      width: 30%;
 }
 dialog::backdrop {
       background-color: rgba(0, 0, 0, 0.599);
@@ -69,6 +69,7 @@ dialog::backdrop {
       font-size: 20px;
 }
 .fa-arrow-left {
+      transition: all 0s;
       visibility: hidden;
 }
 .fa-xmark:hover,
@@ -167,22 +168,21 @@ dialog::backdrop {
       text-decoration: underline;
 }
 
-
-
-
 /*ADD PHOTO MODALE*/
-.modaleAddPhoto{
-      width: 25%;
+
+#secondModale {
+      display: none;
 }
-.addPhotoForm{
+
+.addPhotoForm {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 20px;
 }
-.photoPreview{
-      background-color: #E8F1F6;
+.photoPreview {
+      background-color: #e8f1f6;
       padding: 15px;
       display: flex;
       flex-direction: column;
@@ -192,41 +192,43 @@ dialog::backdrop {
       width: 80%;
       gap: 10px;
 }
-.photoPreview label{
-      background-color: #CBD6DC;
+.photoPreview label {
+      background-color: #cbd6dc;
       border-radius: 25px;
       padding: 10px 15px;
       color: #306685;
       font-size: 18px;
 }
-.fa-image{
+.fa-image {
       font-size: 3rem;
-      color: #B9C5CC;
+      color: #b9c5cc;
 }
-.inputImg{
+.inputImg {
       display: none;
 }
-.photoPreview p{
+.photoPreview p {
       color: #444444;
       font-size: 13px;
 }
-.previewImg{
+.previewImg {
       display: none;
       max-width: 50%;
 }
-.formTitle, .formCategory{
+.formTitle,
+.formCategory {
       display: flex;
       flex-direction: column;
       width: 80%;
 }
-.formTitle input, .formCategory select{
+.formTitle input,
+.formCategory select {
       border: 1px solid white;
       outline: none;
       box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.191);
       padding: 10px 5px;
       margin-top: 5px;
 }
-.importProjectBtn{
+.importProjectBtn {
       background-color: #1d6053;
       border-radius: 25px;
       padding: 12px 25px;
@@ -238,7 +240,7 @@ dialog::backdrop {
       border: none;
       cursor: pointer;
 }
-input[type="submit" i]:disabled {
+input[type='submit' i]:disabled {
       background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3));
       color: -internal-light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
       border-color: -internal-light-dark(rgba(118, 118, 118, 0.3), rgba(195, 195, 195, 0.3));

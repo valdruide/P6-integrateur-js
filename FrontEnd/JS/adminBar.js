@@ -38,14 +38,15 @@ const admin = {
 
                   const editMode = document.getElementsByClassName('editMode')[0];
                   const modaleContainer = document.querySelector('.modaleContainer');
-                  const modaleAddPhoto = document.querySelector('.modaleAddPhoto');
+                  const firstModale = document.getElementById('firstModale');
+                  const modaleAddPhoto = document.getElementById('secondModale');
                   editMode.addEventListener('click', () => {
-                        modaleAddPhoto.close();
                         modaleContainer.showModal();
                         admin.getWorks();
                   });
 
                   const closeModale = document.querySelectorAll('.fa-xmark');
+                  const arrowLeft = document.getElementById('fa-arrow-left');
                   for (let i = 0; i < closeModale.length; i++) {
                         closeModale[i].addEventListener('click', () => {
                               if (workDeleted) {
@@ -56,26 +57,31 @@ const admin = {
                                     location.reload();
                               } else {
                                     admin.removePhoto();
-                                    modaleAddPhoto.close();
+                                    arrowLeft.style.visibility = 'hidden';
+                                    modaleAddPhoto.style.display = 'none';
+                                    firstModale.style.display = 'block';
                                     modaleContainer.close();
                               }
                         });
                         modaleContainer.addEventListener('mousedown', (event) => {
                               if (event.button == 0) {
-                                    admin.removePhoto();
-                                    modaleContainer.close();
+                                    if (workDeleted) {
+                                          workDeleted = false;
+                                          location.reload();
+                                    } else if (workAdded) {
+                                          workAdded = false;
+                                          location.reload();
+                                    } else {
+                                          admin.removePhoto();
+                                          arrowLeft.style.visibility = 'hidden';
+                                          modaleAddPhoto.style.display = 'none';
+                                          firstModale.style.display = 'block';
+                                          modaleContainer.close();
+                                    }
                               }
                         });
-                        modaleAddPhoto.addEventListener('mousedown', (event) => {
-                              if (event.button == 0) {
-                                    admin.removePhoto();
-                                    modaleAddPhoto.close();
-                              }
-                        });
-                        const firstModale = document.getElementById('firstModale');
-                        firstModale.addEventListener('mousedown', (event) => event.stopPropagation());
-                        const secondModale = document.getElementById('secondModale');
-                        secondModale.addEventListener('mousedown', (event) => event.stopPropagation());
+                        const modaleWrapper = document.getElementById('modaleWrapper');
+                        modaleWrapper.addEventListener('mousedown', (event) => event.stopPropagation());
                   }
             }
       },
@@ -139,16 +145,18 @@ const admin = {
             }
       },
       addPhoto: async function () {
-            const modaleContainer = document.querySelector('.modaleContainer');
-            const modaleAddPhoto = document.querySelector('.modaleAddPhoto');
-            const arrowLeft = document.querySelectorAll('.fa-arrow-left')[1];
+            // const modaleContainer = document.getElementById('firstModale');
+            const firstModale = document.getElementById('firstModale');
+            const modaleAddPhoto = document.getElementById('secondModale');
+            const arrowLeft = document.getElementById('fa-arrow-left');
             arrowLeft.style.visibility = 'visible';
-            modaleContainer.close();
-            modaleAddPhoto.showModal();
+            modaleAddPhoto.style.display = 'block';
+            firstModale.style.display = 'none';
 
             arrowLeft.addEventListener('click', () => {
-                  modaleAddPhoto.close();
-                  modaleContainer.showModal();
+                  arrowLeft.style.visibility = 'hidden';
+                  modaleAddPhoto.style.display = 'none';
+                  firstModale.style.display = 'block';
             });
 
             //Preview de la photo
@@ -187,7 +195,6 @@ const admin = {
                               formData.append('title', title.value);
                               formData.append('category', categoryId.value);
                               formData.append('image', pic.files[0]);
-                              console.log('run');
                               const response = await fetch('http://localhost:5678/api/works', {
                                     method: 'POST',
                                     headers: {
@@ -197,8 +204,8 @@ const admin = {
                               });
                               if (response.status === 201) {
                                     arrowLeft.style.visibility = 'hidden';
-                                    modaleAddPhoto.close();
-                                    modaleContainer.showModal();
+                                    modaleAddPhoto.style.display = 'none';
+                                    firstModale.style.display = 'block';
                                     pic.value = null;
                                     title = '';
                                     categoryId = 1;
